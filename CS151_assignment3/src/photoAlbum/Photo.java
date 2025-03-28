@@ -9,7 +9,6 @@ public class Photo {
     private Date dateAdded;
     private long fileSize;
 
-    // Constructor, getters, and setters
     public Photo (String filePath) {
     	try {
     		this.filePath = new File(filePath);
@@ -19,17 +18,16 @@ public class Photo {
     	}catch(Exception e) {
     		throw new IllegalArgumentException("can't find the image with path");
     	}
-    	this.name = filePath.substring(filePath.lastIndexOf("\\")+1, filePath.lastIndexOf("."));
+    	if(filePath.lastIndexOf("\\") != -1) {
+    		this.name = filePath.substring(
+    				filePath.lastIndexOf("\\")+1, filePath.lastIndexOf("."));
+    	}
+    	else {
+    		this.name = filePath.substring(0, filePath.lastIndexOf("."));
+    	}	
     	this.dateAdded = new Date();
     }
-    
-    public Photo(Photo p) {
-    	name = p.getName();
-    	filePath = p.getPath();
-    	dateAdded = p.getDate();
-    	fileSize = p.getSize();
-    }
-    
+ 
     public String getName() {return name;}
     public File getPath() {return filePath;}
     public Date getDate() {return dateAdded;}
