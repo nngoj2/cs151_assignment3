@@ -1,3 +1,9 @@
+/**
+ * CIS151 Spring 2025 Assignment 3 Solution
+ * @author Nam Tan Ngo
+ * @version 1.0 03/28/2025
+ */
+
 package photoAlbum;
 
 import java.awt.BorderLayout;
@@ -16,6 +22,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * a class to received user input and notify the model about any change
+ */
 public class PhotoAlbumController {
 	private JLabel northLabel;
 	private JPanel westPanel;
@@ -24,6 +33,9 @@ public class PhotoAlbumController {
 	private PhotoAlbumModel model;
 	private PhotoAlbumView viewer;
 	
+	/**
+	 * the instructor which create new model and the user interface
+	 */
 	public PhotoAlbumController() {
 		this.model = new PhotoAlbumModel();
 		this.viewer = model.getViewer(0);
@@ -44,10 +56,15 @@ public class PhotoAlbumController {
 		frame.add(initSouthPanel(), BorderLayout.SOUTH);
 		frame.setTitle("Photo Album Manager");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.pack();
 		frame.setVisible(true);	
 	}
 
+	/**
+	 * the method to create the south panel which will be placed 
+	 * at the bottom of the frame. not included in the instructor to
+	 * increase readability
+	 * @return JPanel
+	 */
 	private JPanel initSouthPanel() {
 		JButton addB = new JButton("Add Photo");
 		JButton delB = new JButton("Delete Photo");
@@ -129,6 +146,15 @@ public class PhotoAlbumController {
 		return menu;
 	}
 	
+	/**
+	 * add ActionListener to "sort JButton" in initSouthPanel
+	 * separate to increase readability
+	 * @param i - an integer represent viewer in model
+	 * 		0: viewer with sort-by-date sort class
+	 * 		1: viewer with sort-by-name sort class
+	 * 	 	2: viewer with sort-by-size sort class
+	 * @return ActionListener class
+	 */
 	private ActionListener initSortB(int i) {
 		return new ActionListener() {
 			@Override
